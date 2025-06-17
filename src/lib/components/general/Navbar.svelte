@@ -14,7 +14,7 @@
 <nav class="navbar navbar-expand-lg layer-2">
 	<div class="d-flex justify-content-between w-100">
 		<div class="start d-flex align-items-center">
-			<button
+			<!-- <button
 				class="btn"
 				type="button"
 				data-bs-toggle="offcanvas"
@@ -22,15 +22,16 @@
 				aria-controls="pages"
 			>
 				<i class="material-icons"> menu </i>
-			</button>
+			</button> -->
 			<a
 				class="
 					navbar-brand
+					ps-3
 				"
 				href="/">{title}</a
 			>
 		</div>
-		<div class="end d-flex align-items-center">
+		<!-- <div class="end d-flex align-items-center">
 			<div class="dropdown">
 				<button
 					class="btn dropdown-toggle px-2"
@@ -52,7 +53,6 @@
 					{#if $self.data.username === 'guest'}
 						<li><a class="dropdown-item" href="/account/sign-in">Sign In</a></li>
 					{:else}
-						<!-- <li><a class="dropdown-item" href="/account/profile">Profile</a></li> -->
 						<li><a class="dropdown-item" href="/account/sign-out">Sign Out</a></li>
 					{/if}
 				</ul>
@@ -72,9 +72,9 @@
 					</span>
 				{/if}
 			</button>
-		</div>
+		</div> -->
 	</div>
 </nav>
-<SideNav id="pages" />
+<!-- <SideNav id="pages" />
 
-<Notifications bind:notifs />
+<Notifications bind:notifs /> -->

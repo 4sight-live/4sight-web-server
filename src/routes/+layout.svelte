@@ -1,6 +1,8 @@
 <script>
 	import { Struct } from 'drizzle-struct/front-end';
 	import { browser } from '$app/environment';
+	import Navbar from '$lib/components/general/Navbar.svelte';
+	import { PUBLIC_APP_NAME } from '$env/static/public';
 
 	setTimeout(() => {
 		if (browser) Struct.buildAll();
@@ -9,5 +11,6 @@
 </script>
 
 <main>
+	<Navbar title={PUBLIC_APP_NAME} />
 	{@render children()}
 </main>
