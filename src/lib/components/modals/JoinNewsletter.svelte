@@ -59,6 +59,7 @@
 
 
         if (window.localStorage.getItem('newsletter-seen') !== 'true') {
+            window.localStorage.setItem('newsletter-seen', 'true');
             setTimeout(show, 3000);
         }
 

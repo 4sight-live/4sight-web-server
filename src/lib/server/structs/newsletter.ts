@@ -53,7 +53,6 @@ export namespace Newsletter {
     export type TeamOnboardingData = typeof TeamOnboarding.sample;
 
     TeamOnboarding.on('create', async (target) => {
-
         const unsub = await Email.createLink(
             `https://4sight.live/onboarding/${target.data.id}/unsubscribe`,
         );
