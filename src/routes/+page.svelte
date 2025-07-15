@@ -1,4 +1,7 @@
 <script lang="ts">
+	import JoinNewsletter from "$lib/components/modals/JoinNewsletter.svelte";
+
+	let newsletter: JoinNewsletter;
 </script>
 
 <div class="background-container">
@@ -86,7 +89,7 @@
 	<div class="row mb-3">
 		<h3>Values</h3>
 	</div>
-	<div class="row mb-3">
+	<div class="row row-1 mb-3">
 		<div class="col-md-4">
 			<div class="card layer-2">
 				<div class="card-body">
@@ -121,7 +124,7 @@
 	<div class="row mb-3">
 		<h3>What is coming</h3>
 	</div>
-	<div class="row mb-3">
+	<div class="row row-2 mb-3">
 		<div class="col-md-4">
 			<div class="card layer-2">
 				<div class="card-body">
@@ -162,7 +165,7 @@
 	<div class="row mb-3">
 		<h3>Get Involved</h3>
 	</div>
-	<div class="row mb-3">
+	<div class="row mb-3 row-3">
 		<div class="col-md-4">
 			<div class="card layer-2">
 				<div class="card-body">
@@ -186,9 +189,9 @@
 						<p>
 							Stay updated with the latest news, features, and updates from 4Sight Streaming.
 						</p>
-						<a href="/join-newsletter" class="btn btn-primary">
+						<button class="btn btn-primary" onclick={() => newsletter.show()}>
 							Join our Newsletter
-						</a>
+						</button>
 					</div>
 				</div>
 			</div>
@@ -235,4 +238,19 @@
 	.t-shadow {
 		text-shadow: 2px 2px 15px rgba(255, 255, 255, 0.5);
 	}
+
+	.row-1 .card {
+		height: 150px;
+	}
+
+	.row-2 .card {
+		height: 200px;
+	}
+
+	.row-3 .card {
+		height: 210px;
+	}
 </style>
+
+
+<JoinNewsletter bind:this={newsletter} />

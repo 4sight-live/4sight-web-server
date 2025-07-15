@@ -14,5 +14,11 @@ export type Email = {
         visit: string;
         unsubscribe: string;
     };
+'welcome-onboarding': {
+        logo: string;
+        contributorGuide: string;
+        site: string;
+        unsubscribe: string;
+    };
 
 };

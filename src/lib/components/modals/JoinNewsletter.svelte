@@ -23,6 +23,7 @@
 	export const once = em.once.bind(em);
 
 	export const show = async () => {
+        window.localStorage.setItem('newsletter-seen', 'true');
 		em.emit('show');
 		const modal = await getModal();
 		modal.show();
@@ -56,11 +57,10 @@
 
 		self.addEventListener('shown.bs.modal', onshow);
 
-		// if (doShow) {
-		// 	show();
-		// }
 
-        show();
+        if (window.localStorage.getItem('newsletter-seen') !== 'true') {
+            setTimeout(show, 3000);
+        }
 
         const onkeydown = (event: KeyboardEvent) => {
             switch (event.key) {
@@ -100,22 +100,22 @@
 			<div class="modal-body">
                 <div class="container">
                     <div class="row mb-3">
-                        <label for="newsletter-email">
+                        <label for="newsletter-email-{id}">
                             Email
                         </label>
-                        <input type="email" name="newsletter-email" id="newsletter-email" class="transparent-input" placeholder="Enter your email" bind:value={email} />
+                        <input type="email" name="newsletter-email-{id}" id="newsletter-email-{id}" class="transparent-input" placeholder="Enter your email" bind:value={email} />
                     </div>
                     <div class="row mb-3">
-                        <label for="newsletter-first-name">
+                        <label for="newsletter-first-name-{id}">
                             First Name
                         </label>
-                        <input type="text" name="newsletter-first-name" id="newsletter-first-name" class="transparent-input" placeholder="Enter your name" bind:value={firstName} />
+                        <input type="text" name="newsletter-first-name-{id}" id="newsletter-first-name-{id}" class="transparent-input" placeholder="Enter your name" bind:value={firstName} />
                     </div>
                     <div class="row mb-3">
-                        <label for="newsletter-last-name">
+                        <label for="newsletter-last-name-{id}">
                             Last Name
                         </label>
-                        <input type="text" name="newsletter-last-name" id="newsletter-last-name" class="transparent-input" placeholder="Enter your last name" bind:value={lastName} />
+                        <input type="text" name="newsletter-last-name-{id}" id="newsletter-last-name-{id}" class="transparent-input" placeholder="Enter your last name" bind:value={lastName} />
                     </div>
                     <div class="row mb-3">
                         <p class="message">

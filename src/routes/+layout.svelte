@@ -4,6 +4,7 @@
 	import Navbar from '$lib/components/general/Navbar.svelte';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import JoinNewsletter from '$lib/components/modals/JoinNewsletter.svelte';
+	import Footer from '$lib/components/general/Footer.svelte';
 
 	setTimeout(() => {
 		if (browser) Struct.buildAll();
@@ -14,6 +15,7 @@
 <main>
 	<Navbar title={PUBLIC_APP_NAME} />
 	{@render children()}
+	<Footer />
 </main>
 
 <JoinNewsletter />
