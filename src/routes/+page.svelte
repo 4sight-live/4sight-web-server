@@ -103,7 +103,7 @@
 		<div class="col-md-4">
 			<div class="card layer-2">
 				<div class="card-body">
-					<div class="card-title">Personalization</div>
+					<h5 class="card-title">Personalization</h5>
 					<p>
 						We believe in tailored experiences that cater to your individual preferences.
 					</p>
@@ -113,7 +113,7 @@
 		<div class="col-md-4">
 			<div class="card layer-2">
 				<div class="card-body">
-					<div class="card-title">User Experience</div>
+					<h5 class="card-title">User Experience</h5>
 					<p>
 						Our number 1 priority is to create a seamless and enjoyable user experience by anticipating your needs.
 					</p>
