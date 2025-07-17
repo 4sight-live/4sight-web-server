@@ -11,6 +11,8 @@ import { sse } from '../services/sse';
 import { DataAction, PropertyAction } from 'drizzle-struct/types';
 // import { Universes } from './universe';
 import { Email } from './email';
+import type { Icon } from '$lib/types/icons';
+import { z } from 'zod';
 
 export namespace Account {
 	export const Account = new Struct({
@@ -24,7 +26,8 @@ export namespace Account {
 			email: text('email').notNull().unique(),
 			picture: text('picture').notNull(),
 			verified: boolean('verified').notNull(),
-			verification: text('verification').notNull()
+			verification: text('verification').notNull(),
+			lastLogin: text('last_login').notNull().default('')
 		},
 		generators: {
 			id: () => (uuid() + uuid() + uuid() + uuid()).replace(/-/g, '')
@@ -39,6 +42,24 @@ export namespace Account {
 			return new Error('Not logged in');
 		}
 		return account.safe();
+	});
+
+	Account.sendListen('username-exists', async (event, data) => {
+		const parsed = z
+			.object({
+				username: z.string().min(1)
+			})
+			.safeParse(data);
+
+		if (!parsed.success) {
+			throw new Error('Invalid data recieved');
+		}
+
+		const account = await Account.fromProperty('username', parsed.data.username, {
+			type: 'count'
+		}).unwrap();
+
+		return account > 0;
 	});
 
 	Account.on('delete', async (a) => {
@@ -124,6 +145,7 @@ export namespace Account {
 			severity: text('severity').notNull(),
 			message: text('message').notNull(),
 			icon: text('icon').notNull(),
+			iconType: text('icon_type').notNull(),
 			link: text('link').notNull(),
 			read: boolean('read').notNull()
 		}
@@ -216,7 +238,8 @@ export namespace Account {
 						salt: hash.salt,
 						verified: false,
 						verification: verificationId,
-						picture: '/'
+						picture: '/',
+						lastLogin: ''
 					},
 					{
 						static: config?.canUpdate
@@ -260,7 +283,7 @@ export namespace Account {
 	export const sendAccountNotif = (
 		accountId: string,
 		notif: Notification & {
-			icon: string;
+			icon: Icon;
 			link: string;
 		}
 	) => {
@@ -270,7 +293,8 @@ export namespace Account {
 			severity: notif.severity,
 			message: notif.message,
 			accountId: accountId,
-			icon: notif.icon,
+			icon: notif.icon.name,
+			iconType: notif.icon.type,
 			link: notif.link,
 			read: false
 		});
@@ -313,7 +337,8 @@ export namespace Account {
 					salt: '',
 					verified: false,
 					verification: verificationId,
-					picture
+					picture,
+					lastLogin: ''
 				})
 			).unwrap();
 		});
@@ -361,7 +386,10 @@ export namespace Account {
 					title: 'Password Reset Request',
 					message: 'A password reset link has been sent to your email',
 					severity: 'warning',
-					icon: 'info',
+					icon: {
+						name: 'lock',
+						type: 'material-icons'
+					},
 					link: ''
 				})
 			).unwrap();

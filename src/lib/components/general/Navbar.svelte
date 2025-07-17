@@ -14,7 +14,7 @@
 <nav class="navbar navbar-expand-lg layer-2">
 	<div class="d-flex justify-content-between w-100">
 		<div class="start d-flex align-items-center">
-			<!-- <button
+			<button
 				class="btn"
 				type="button"
 				data-bs-toggle="offcanvas"
@@ -22,16 +22,15 @@
 				aria-controls="pages"
 			>
 				<i class="material-icons"> menu </i>
-			</button> -->
+			</button>
 			<a
 				class="
 					navbar-brand
-					ps-3
 				"
 				href="/">{title}</a
 			>
 		</div>
-		<!-- <div class="end d-flex align-items-center">
+		<div class="end d-flex align-items-center">
 			<div class="dropdown">
 				<button
 					class="btn dropdown-toggle px-2"
@@ -42,7 +41,7 @@
 					<i class="material-icons">account_circle</i>
 				</button>
 				<ul
-					class="dropdown-menu"
+					class="dropdown-menu animate__animated animate__fadeInDown animate__faster"
 					style="
 					position: fixed;
 					top: 52px;
@@ -72,9 +71,9 @@
 					</span>
 				{/if}
 			</button>
-		</div> -->
+		</div>
 	</div>
 </nav>
-<!-- <SideNav id="pages" />
+<SideNav id="pages" />
 
-<Notifications bind:notifs /> -->
+<Notifications bind:notifs />

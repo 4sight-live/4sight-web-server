@@ -170,13 +170,6 @@
 					</div>
 				</div>
 
-				<div class="row mb-3">
-					<div class="col">
-						<input type="checkbox" name="newsletter" id="newsletter" />
-						<label for="newsletter"> Join our newsletter </label>
-					</div>
-				</div>
-
 				<button type="submit" class="btn btn-primary"> Sign Up </button>
 			</form>
 		</div>

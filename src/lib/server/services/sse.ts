@@ -86,9 +86,10 @@ export class Connection {
 
 	close() {
 		return attempt(() => {
+			this.cache = []; // empty cache once closed
 			// console.log('Closing connection', this.uuid);
 			// clearInterval(this.interval);
-			// this.send('close', null);
+			this.send('close', null);
 			this.emit('close');
 			this.controller.close();
 		});
@@ -103,15 +104,23 @@ export class Connection {
 	}
 
 	retryCached(now: number) {
-		for (const msg of this.cache) {
-			if (now - msg.date > 30000 || msg.retries >= 5) continue;
-			this.controller.enqueue(
-				`data: ${encode(JSON.stringify({ event: msg.event, data: msg.data, id: msg.id }))}\n\n`
-			);
-			msg.retries++;
-		}
+		return attempt(() => {
+			for (const msg of this.cache) {
+				if (now - msg.date > 30000 || msg.retries >= 5) continue;
+				this.controller.enqueue(
+					`data: ${encode(JSON.stringify({ event: msg.event, data: msg.data, id: msg.id }))}\n\n`
+				);
+				msg.retries++;
+			}
 
-		this.cache = this.cache.filter((e) => now - e.date < 30000 && e.id > this.index - 20);
+			this.cache = this.cache.filter((e) => now - e.date < 30000 && e.id > this.index - 20);
+		});
+	}
+
+	ping() {
+		this.lastPing = Date.now();
+		// console.log(`Ping received for connection ${this.uuid}`);
+		this.send('ping', null);
 	}
 }
 
@@ -146,7 +155,7 @@ export class SSE {
 				}
 
 				// Send ping and retry unacked messages
-				connection.send('ping', null);
+				connection.ping();
 				connection.retryCached(now);
 			});
 		}, 10000);
@@ -216,6 +225,7 @@ export class SSE {
 
 		const connection = new Connection(uuid, session, this, controller);
 		this.connections.set(uuid, connection);
+		connection.ping();
 		// console.log(this.connections);
 		return connection;
 	}

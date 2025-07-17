@@ -1,14 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+// See /diagrams/redis.drawio for the redis diagram
+
 import { createClient } from 'redis';
-import { attemptAsync, type ResultPromise } from 'ts-utils/check';
+import { attemptAsync, type ResultPromise, attempt, type Result } from 'ts-utils/check';
 import { EventEmitter } from 'ts-utils/event-emitter';
 import { z } from 'zod';
-import { uuid } from '../utils/uuid';
-import terminal from '../utils/terminal';
+import { v4 as u } from 'uuid';
 import type { Stream } from 'ts-utils/stream';
 import { sleep } from 'ts-utils/sleep';
 
+const log = (...data: unknown[]) => {
+	console.log(`[Redis]`, ...data);
+};
+
 export namespace Redis {
+	// Devs can reassign this to a different UUID generator if they want
+	// eslint-disable-next-line prefer-const
+	export let uuid = u;
+
 	export const REDIS_NAME = process.env.REDIS_NAME || 'default';
 	let messageId = -1;
 	export const clientId = uuid();
@@ -57,21 +67,21 @@ export namespace Redis {
 			await Promise.all([_sub.connect(), _pub.connect(), _queue.connect()]);
 			return new Promise<void>((res, rej) => {
 				_sub?.subscribe('discovery:i_am', (message) => {
-					console.log(`Received discovery:iam message: ${message}`);
+					log(`Received discovery:iam message: ${message}`);
 					const [name, instanceId] = message.split(':');
-					console.log(`Discovery message from instance: ${name} (${instanceId})`, clientId);
+					log(`Discovery message from instance: ${name} (${instanceId})`, clientId);
 					if (instanceId === clientId) return res(); // Ignore our own message and resolve. The pub/sub system is working.
 					_pub?.publish('discovery:welcome', REDIS_NAME + ':' + instanceId);
-					console.log(`Discovered instance: ${name} (${instanceId})`);
+					log(`Discovered instance: ${name} (${instanceId})`);
 				});
 				_sub?.subscribe('discovery:welcome', (message) => {
-					console.log(`Received discovery:welcome message: ${message}`);
+					log(`Received discovery:welcome message: ${message}`);
 					const [name, instanceId] = message.split(':');
 					if (instanceId === clientId) return; // Ignore our own message
 
-					console.log(`Welcome message from instance: ${name} (${instanceId})`);
+					log(`Welcome message from instance: ${name} (${instanceId})`);
 					if (name === REDIS_NAME) {
-						terminal.warn(
+						console.warn(
 							`Another instance of Redis with name "${REDIS_NAME}" is already running. This may cause conflicts.`
 						);
 						res();
@@ -88,11 +98,11 @@ export namespace Redis {
 	export const disconnect = () => {
 		return attemptAsync(async () => {
 			if (_sub) {
-				await _sub.disconnect();
+				await _sub.destroy();
 				_sub = undefined;
 			}
 			if (_pub) {
-				await _pub.disconnect();
+				await _pub.destroy();
 				_pub = undefined;
 			}
 		});
@@ -133,7 +143,7 @@ export namespace Redis {
 		},
 		Name extends string
 	> {
-		public static services = new Map<string, ListeningService<any, any>>();
+		// public static services = new Map<string, ListeningService<any, any>>();
 
 		private readonly em = new EventEmitter<{
 			[K in keyof Events]: {
@@ -156,9 +166,6 @@ export namespace Redis {
 				console.warn(
 					`Service name "${name}" cannot be the same as the Redis instance name "${REDIS_NAME}".`
 				);
-			}
-			if (ListeningService.services.has(this.name)) {
-				throw new Error(`Service with name "${this.name}" already exists.`);
 			}
 
 			_sub?.subscribe('channel:' + this.name, (message: string) => {
@@ -187,7 +194,7 @@ export namespace Redis {
 				}
 			});
 
-			ListeningService.services.set(this.name, this);
+			// ListeningService.services.set(this.name, this);
 		}
 	}
 
@@ -263,7 +270,7 @@ export namespace Redis {
 						const validated = returnType.safeParse(parsed.data);
 						if (!validated.success) {
 							return reject(
-								new Error(`Invalid response data: ${JSON.stringify(validated.error.errors)}`)
+								new Error(`Invalid response data: ${JSON.stringify(validated.error.issues)}`)
 							);
 						}
 						clearTimeout(timeout);
@@ -505,7 +512,7 @@ export namespace Redis {
 			});
 
 			return new Promise<void>((res) => {
-				stream.on('end', res);
+				stream.once('end', res);
 			});
 		});
 	};
@@ -547,6 +554,84 @@ export namespace Redis {
 					console.error(`[listenStream:${streamName}] Invalid stream message:`, err);
 				}
 			});
+		});
+	};
+
+	export const setValue = (key: string, value: unknown, ttl?: number) => {
+		return attemptAsync(async () => {
+			const serializedValue = JSON.stringify(value);
+			await _pub?.set(key, serializedValue);
+			if (ttl) {
+				await _pub?.expire(key, ttl);
+			}
+			// log(`Set value for key "${key}":`, value);
+		});
+	};
+
+	export const getValue = (key: string, returnType: z.ZodType) => {
+		return attemptAsync(async () => {
+			const serializedValue = await _pub?.get(key);
+			if (!serializedValue) {
+				// log(`No value found for key "${key}"`);
+				return null;
+			}
+			try {
+				const parsedValue = JSON.parse(serializedValue);
+				return returnType.parse(parsedValue);
+			} catch (err) {
+				console.error(`Error parsing value for key "${key}":`, err);
+				throw new Error(`Invalid value for key "${key}"`);
+			}
+		});
+	};
+
+	export const getPub = (): Result<ReturnType<typeof createClient>> => {
+		return attempt(() => {
+			if (!_pub) {
+				throw new Error('Redis publisher client is not initialized. Call connect() first.');
+			}
+			return _pub;
+		});
+	};
+
+	export const getSub = (): Result<ReturnType<typeof createClient>> => {
+		return attempt(() => {
+			if (!_sub) {
+				throw new Error('Redis subscriber client is not initialized. Call connect() first.');
+			}
+			return _sub;
+		});
+	};
+
+	export const incr = (key: string, increment = 1) => {
+		return attemptAsync(async () => {
+			if (!_pub) {
+				throw new Error('Redis publisher client is not initialized. Call connect() first.');
+			}
+			const has = await _pub.exists(key);
+			if (!has) {
+				// log(`Key "${key}" does not exist. Initializing to 0 before incrementing.`);
+				await _pub.set(key, '0');
+			}
+
+			const count = await _pub.incrBy(key, increment);
+			// log(`Incremented key "${key}" by ${increment}. New value: ${count}`);
+			return count;
+		});
+	};
+
+	export const expire = (key: string, seconds: number) => {
+		return attemptAsync(async () => {
+			if (!_pub) {
+				throw new Error('Redis publisher client is not initialized. Call connect() first.');
+			}
+			const result = await _pub.expire(key, seconds);
+			// if (result) {
+			// 	log(`Set expiration for key "${key}" to ${seconds} seconds.`);
+			// } else {
+			// 	log(`Failed to set expiration for key "${key}". Key may not exist.`);
+			// }
+			return result;
 		});
 	};
 }

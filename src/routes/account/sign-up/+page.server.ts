@@ -7,7 +7,6 @@ import { OAuth2Client } from 'google-auth-library';
 import { SECRET_OAUTH2_CLIENT_ID, SECRET_OAUTH2_CLIENT_SECRET } from '$env/static/private';
 import terminal from '$lib/server/utils/terminal.js';
 import { Logs } from '$lib/server/structs/log.js';
-import { Newsletter } from '$lib/server/structs/newsletter.js';
 
 // const log = (...args: unknown[]) => console.log('[oauth/sign-up]', ...args);
 
@@ -141,16 +140,6 @@ export const actions = {
 			accountId: account.value.id,
 			message: `${account.value.data.username} created an account`
 		});
-
-		if (data.get('newsletter') === 'on') {
-			Newsletter.MailingList.new({
-				email: account.value.data.email,
-				firstName: account.value.data.firstName,
-				lastName: account.value.data.lastName
-			}).unwrap().catch((err) => {
-				terminal.error(`Failed to add user ${account.value.data.email} to newsletter: ${err}`);
-			});
-		}
 
 		return {
 			message: 'Account created',
