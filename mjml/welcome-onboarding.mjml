@@ -1,55 +1,62 @@
 <mjml>
-  <mj-head>
-    <mj-title>Welcome to 4sight Contributors</mj-title>
-    <mj-preview>We're excited to have you on board — let's shape the future together.</mj-preview>
-    <mj-style>
-      .body-text { font-size: 16px; line-height: 1.6; color: #444; }
-      .highlight { font-weight: bold; color: #0077ff; }
-    </mj-style>
-  </mj-head>
+	<mj-head>
+		<mj-title>Welcome to 4sight Contributors</mj-title>
+		<mj-preview>We're excited to have you on board — let's shape the future together.</mj-preview>
+		<mj-style>
+			.body-text { font-size: 16px; line-height: 1.6; color: #444; } .highlight { font-weight: bold;
+			color: #0077ff; }
+		</mj-style>
+	</mj-head>
 
-  <mj-body background-color="#f5f5f5">
-    <mj-section background-color="#ffffff" padding="30px 0">
-      <mj-column width="100%">
-        <mj-image src="{{ logo }}" alt="4sight Logo" width="180px" align="center" />
+	<mj-body background-color="#f5f5f5">
+		<mj-section background-color="#ffffff" padding="30px 0">
+			<mj-column width="100%">
+				<mj-image src="{{ logo }}" alt="4sight Logo" width="180px" align="center" />
 
-        <mj-spacer height="20px" />
+				<mj-spacer height="20px" />
 
-        <mj-text font-size="22px" font-weight="bold" align="center" color="#333">
-          Welcome, Future Contributor!
-        </mj-text>
+				<mj-text font-size="22px" font-weight="bold" align="center" color="#333">
+					Welcome, Future Contributor!
+				</mj-text>
 
-        <mj-text align="center" css-class="body-text">
-          Thanks for expressing interest in contributing to <span class="highlight">4sight</span>. We're thrilled to have curious, driven minds like yours involved.
-        </mj-text>
+				<mj-text align="center" css-class="body-text">
+					Thanks for expressing interest in contributing to <span class="highlight">4sight</span>.
+					We're thrilled to have curious, driven minds like yours involved.
+				</mj-text>
 
-        <mj-text align="center" css-class="body-text">
-          Whether you're passionate about writing, research, design, or code — there's room for your ideas here. Together, we’re building something meaningful.
-        </mj-text>
+				<mj-text align="center" css-class="body-text">
+					Whether you're passionate about writing, research, design, or code — there's room for your
+					ideas here. Together, we’re building something meaningful.
+				</mj-text>
 
-        <mj-divider border-color="#e0e0e0" />
+				<mj-divider border-color="#e0e0e0" />
 
-        <mj-text align="center" css-class="body-text">
-          Here's how to get started:
-        </mj-text>
+				<mj-text align="center" css-class="body-text"> Here's how to get started: </mj-text>
 
-        <mj-button href="{{ contributorGuide }}" background-color="#0077ff" color="white" font-size="16px" padding="12px 24px">
-          View Contributor Guide
-        </mj-button>
+				<mj-button
+					href="{{ contributorGuide }}"
+					background-color="#0077ff"
+					color="white"
+					font-size="16px"
+					padding="12px 24px"
+				>
+					View Contributor Guide
+				</mj-button>
 
-        <mj-text align="center" css-class="body-text">
-          Or, feel free to reply to this email with any questions — we’re happy to help.
-        </mj-text>
-      </mj-column>
-    </mj-section>
+				<mj-text align="center" css-class="body-text">
+					Or, feel free to reply to this email with any questions — we’re happy to help.
+				</mj-text>
+			</mj-column>
+		</mj-section>
 
-    <mj-section background-color="#f5f5f5" padding="20px 0">
-      <mj-column>
-        <mj-text font-size="12px" align="center" color="#999">
-          4sight Contributors | <a href="{{ site }}" style="color:#999;text-decoration:none;">Visit our site</a><br/>
-          Not you? <a href="{{ unsubscribe }}" style="color:#999;">Unsubscribe</a>
-        </mj-text>
-      </mj-column>
-    </mj-section>
-  </mj-body>
+		<mj-section background-color="#f5f5f5" padding="20px 0">
+			<mj-column>
+				<mj-text font-size="12px" align="center" color="#999">
+					4sight Contributors |
+					<a href="{{ site }}" style="color: #999; text-decoration: none">Visit our site</a><br />
+					Not you? <a href="{{ unsubscribe }}" style="color: #999">Unsubscribe</a>
+				</mj-text>
+			</mj-column>
+		</mj-section>
+	</mj-body>
 </mjml>
