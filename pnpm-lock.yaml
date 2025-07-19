@@ -32,6 +32,9 @@ importers:
       '@oslojs/encoding':
         specifier: ^1.1.0
         version: 1.1.0
+      '@rajesh896/broprint.js':
+        specifier: ^2.1.1
+        version: 2.1.1
       '@trpc/client':
         specifier: 11.0.0-rc.682
         version: 11.0.0-rc.682(@trpc/server@11.0.0-rc.682(typescript@5.8.3))(typescript@5.8.3)
@@ -57,11 +60,14 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0
       canvas:
-        specifier: github:tsaxking/canvas
+        specifier: git+https://github.com/tsaxking/canvas.git
         version: https://codeload.github.com/tsaxking/canvas/tar.gz/2e96e508fb5a2933cc39e95279055dc0f4f89320(@types/node@22.15.31)(sass-embedded@1.89.2)
       chalk:
         specifier: ^5.4.1
         version: 5.4.1
+      chart.js:
+        specifier: ^4.5.0
+        version: 4.5.0
       check-password-strength:
         specifier: ^2.0.10
         version: 2.0.10
@@ -79,7 +85,7 @@ importers:
         version: 0.38.4(@types/pg@8.15.4)(@types/react@19.1.8)(pg@8.16.0)(postgres@3.4.7)(react@19.1.0)
       drizzle-struct:
         specifier: github:tsaxking/drizzle-struct
-        version: https://codeload.github.com/tsaxking/drizzle-struct/tar.gz/c647a810db5ea7dc39690ddd1ad6babe845a46c1(@types/node@22.15.31)(@types/pg@8.15.4)(@types/react@19.1.8)(react@19.1.0)(sass-embedded@1.89.2)
+        version: https://codeload.github.com/tsaxking/drizzle-struct/tar.gz/367e266187f87695baa314943725680465398843(@types/node@22.15.31)(@types/pg@8.15.4)(@types/react@19.1.8)(react@19.1.0)(sass-embedded@1.89.2)
       drizzle-zod:
         specifier: ^0.6.1
         version: 0.6.1(drizzle-orm@0.38.4(@types/pg@8.15.4)(@types/react@19.1.8)(pg@8.16.0)(postgres@3.4.7)(react@19.1.0))(zod@3.25.64)
@@ -104,6 +110,9 @@ importers:
       filepond-plugin-image-transform:
         specifier: ^3.8.7
         version: 3.8.7(filepond@4.32.8)
+      flatpickr:
+        specifier: ^4.6.13
+        version: 4.6.13
       fuzzy-search:
         specifier: ^3.2.1
         version: 3.2.1
@@ -122,9 +131,15 @@ importers:
       http-status-codes:
         specifier: ^2.3.0
         version: 2.3.0
+      ignore:
+        specifier: ^7.0.5
+        version: 7.0.5
       jsoneditor:
         specifier: ^10.1.3
         version: 10.2.0
+      markdown-it:
+        specifier: ^14.1.0
+        version: 14.1.0
       math:
         specifier: github:tsaxking/calculations
         version: https://codeload.github.com/tsaxking/calculations/tar.gz/6f735b3ade72c81393ee5f07db93647c3d4fff91
@@ -1144,6 +1159,9 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
+  '@kurkle/color@0.3.4':
+    resolution: {integrity: sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w==}
+
   '@mdx-js/react@3.1.0':
     resolution: {integrity: sha512-QjHtSaoameoalGnKDT3FoIl4+9RwyTmo9ZJGBdLOks/YOiWHoRDI3PUwEzOE7kEmGcV3AFcp9K6dYu9rEuKLAQ==}
     peerDependencies:
@@ -1291,6 +1309,10 @@ packages:
 
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+
+  '@rajesh896/broprint.js@2.1.1':
+    resolution: {integrity: sha512-34L0SFrOLHWAhF4ZU7QS32zItGOKdu3BY0DmMwoW6zekLuJWSuCIK07Xzgyy2AqCCUByd2VHMr2wbHousid+qg==}
+    hasBin: true
 
   '@redis/bloom@5.5.6':
     resolution: {integrity: sha512-bNR3mxkwtfuCxNOzfV8B3R5zA1LiN57EH6zK4jVBIgzMzliNuReZXBFGnXvsi80/SYohajn78YdpYI+XNpqL+A==}
@@ -2200,6 +2222,10 @@ packages:
   chardet@0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
 
+  chart.js@4.5.0:
+    resolution: {integrity: sha512-aYeC/jDgSEx8SHWZvANYMioYMZ2KX02W6f6uVfyteuCGcadDLcYVHdfdygsTQkQ4TKn5lghoojAsPj5pu0SnvQ==}
+    engines: {pnpm: '>=8'}
+
   check-error@2.1.1:
     resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
     engines: {node: '>= 16'}
@@ -2596,8 +2622,8 @@ packages:
       sqlite3:
         optional: true
 
-  drizzle-struct@https://codeload.github.com/tsaxking/drizzle-struct/tar.gz/c647a810db5ea7dc39690ddd1ad6babe845a46c1:
-    resolution: {tarball: https://codeload.github.com/tsaxking/drizzle-struct/tar.gz/c647a810db5ea7dc39690ddd1ad6babe845a46c1}
+  drizzle-struct@https://codeload.github.com/tsaxking/drizzle-struct/tar.gz/367e266187f87695baa314943725680465398843:
+    resolution: {tarball: https://codeload.github.com/tsaxking/drizzle-struct/tar.gz/367e266187f87695baa314943725680465398843}
     version: 1.0.0
 
   drizzle-zod@0.6.1:
@@ -2947,6 +2973,9 @@ packages:
   flat-cache@4.0.1:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
     engines: {node: '>=16'}
+
+  flatpickr@4.6.13:
+    resolution: {integrity: sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==}
 
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
@@ -3366,6 +3395,9 @@ packages:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
     engines: {node: '>=10'}
 
+  linkify-it@5.0.0:
+    resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
+
   locate-character@3.0.0:
     resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
 
@@ -3404,6 +3436,10 @@ packages:
   map-or-similar@1.5.0:
     resolution: {integrity: sha512-0aF7ZmVon1igznGI4VS30yugpduQW3y3GkcgGJOp7d8x8QrizhigUxjI/m2UojsXXto+jLAH3KSz+xOJTiORjg==}
 
+  markdown-it@14.1.0:
+    resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
+    hasBin: true
+
   material-icons@1.13.14:
     resolution: {integrity: sha512-kZOfc7xCC0rAT8Q3DQixYAeT+tBqZnxkseQtp2bxBxz7q5pMAC+wmit7vJn1g/l7wRU+HEPq23gER4iPjGs5Cg==}
 
@@ -3422,6 +3458,9 @@ packages:
     resolution: {integrity: sha512-Y4ab+vLvTJS88196Scb/RFNaHMHVSWw6CwfsgWIQP8f42D57iDII0/qABSu530V4pkv8s6T2nx3ds0MC1VwFLA==}
     peerDependencies:
       svelte: ^3.56.0 || ^4.0.0 || ^5.0.0-next.120
+
+  mdurl@2.0.0:
+    resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
 
   media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
@@ -3933,6 +3972,10 @@ packages:
 
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+
+  punycode.js@2.3.1:
+    resolution: {integrity: sha512-uxFIHU0YlHYhDQtV4R9J6a52SLx28BCjT+4ieh7IGbgwVJWO+km431c4yRlREUAsAmt/uMjQUyQHNEPf0M39CA==}
+    engines: {node: '>=6'}
 
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
@@ -4569,6 +4612,9 @@ packages:
     resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  uc.micro@2.1.0:
+    resolution: {integrity: sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==}
 
   uglify-js@3.19.3:
     resolution: {integrity: sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==}
@@ -5438,6 +5484,8 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@kurkle/color@0.3.4': {}
+
   '@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
       '@types/mdx': 2.0.13
@@ -5559,6 +5607,8 @@ snapshots:
   '@polka/url@1.0.0-next.29': {}
 
   '@popperjs/core@2.11.8': {}
+
+  '@rajesh896/broprint.js@2.1.1': {}
 
   '@redis/bloom@5.5.6(@redis/client@5.5.6)':
     dependencies:
@@ -6642,6 +6692,10 @@ snapshots:
 
   chardet@0.7.0: {}
 
+  chart.js@4.5.0:
+    dependencies:
+      '@kurkle/color': 0.3.4
+
   check-error@2.1.1: {}
 
   check-password-strength@2.0.10: {}
@@ -6920,7 +6974,7 @@ snapshots:
       postgres: 3.4.7
       react: 19.1.0
 
-  drizzle-struct@https://codeload.github.com/tsaxking/drizzle-struct/tar.gz/c647a810db5ea7dc39690ddd1ad6babe845a46c1(@types/node@22.15.31)(@types/pg@8.15.4)(@types/react@19.1.8)(react@19.1.0)(sass-embedded@1.89.2):
+  drizzle-struct@https://codeload.github.com/tsaxking/drizzle-struct/tar.gz/367e266187f87695baa314943725680465398843(@types/node@22.15.31)(@types/pg@8.15.4)(@types/react@19.1.8)(react@19.1.0)(sass-embedded@1.89.2):
     dependencies:
       '@eslint/compat': 1.3.0(eslint@9.29.0)
       '@msgpack/msgpack': 3.0.0-beta3
@@ -7552,6 +7606,8 @@ snapshots:
       flatted: 3.3.3
       keyv: 4.5.4
 
+  flatpickr@4.6.13: {}
+
   flatted@3.3.3: {}
 
   follow-redirects@1.15.9: {}
@@ -8046,6 +8102,10 @@ snapshots:
 
   lilconfig@2.1.0: {}
 
+  linkify-it@5.0.0:
+    dependencies:
+      uc.micro: 2.1.0
+
   locate-character@3.0.0: {}
 
   locate-path@6.0.0:
@@ -8076,6 +8136,15 @@ snapshots:
 
   map-or-similar@1.5.0: {}
 
+  markdown-it@14.1.0:
+    dependencies:
+      argparse: 2.0.1
+      entities: 4.5.0
+      linkify-it: 5.0.0
+      mdurl: 2.0.0
+      punycode.js: 2.3.1
+      uc.micro: 2.1.0
+
   material-icons@1.13.14: {}
 
   math-intrinsics@1.1.0: {}
@@ -8093,6 +8162,8 @@ snapshots:
       prismjs: 1.30.0
       svelte: 5.34.3
       vfile-message: 2.0.4
+
+  mdurl@2.0.0: {}
 
   media-typer@0.3.0: {}
 
@@ -8723,6 +8794,8 @@ snapshots:
       ipaddr.js: 1.9.1
 
   proxy-from-env@1.1.0: {}
+
+  punycode.js@2.3.1: {}
 
   punycode@2.3.1: {}
 
@@ -9376,6 +9449,8 @@ snapshots:
       - supports-color
 
   typescript@5.8.3: {}
+
+  uc.micro@2.1.0: {}
 
   uglify-js@3.19.3: {}
 
