@@ -12,4 +12,3 @@ import './styles/layers.css';
 import 'range-slider-input/dist/style.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './styles/ag-grid.css';
-import './styles/scss/font.scss';
