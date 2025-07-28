@@ -300,7 +300,7 @@
 		overflow: hidden;
 		background-color: rgba(0, 0, 0, 0.6);
 		background-blend-mode: overlay;
-		min-height: 50vh;
+		min-height: 80vh;
 	}
 
 	.row-background {
