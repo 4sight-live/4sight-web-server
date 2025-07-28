@@ -11,4 +11,4 @@
 </script>
 
 
-<canvas bind:this={canvas}></canvas>
+<canvas bind:this={canvas} width=10000 height=10000></canvas>

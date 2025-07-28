@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_APP_NAME } from '$env/static/public';
+	import Nodes from '$lib/components/decorative/Nodes.svelte';
 	import JoinNewsletter from '$lib/components/modals/JoinNewsletter.svelte';
 	import { Parallax } from '$lib/utils/parallax';
 	import { onMount } from 'svelte';
@@ -52,11 +53,14 @@
 </svelte:head>
 
 <div class="background-container">
-	<div class="background-image"></div>
+	<div class="nodes">
+		<Nodes />
+	</div>
+	<div class="tint"></div>
 	<h1
 		class="position-absolute start-50 translate-middle text-center text-white t-shadow"
 		style="
-			top: 25%;
+			top: 10%;
 			font-size: 3rem;
 			font-weight: bold !important;
 		"
@@ -123,7 +127,7 @@
 		<h3>Our Mission</h3>
 	</div>
 	<div class="row mb-3">
-		<div class="card layer-2">
+		<div class="card">
 			<div class="card-body">
 				<p>
 					To revolutionize the way people experience video content by leveraging cutting-edge AI
@@ -132,12 +136,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="row mb-3">
-		<h3>What do we stand for?</h3>
-	</div>
 	<div class="row row-1 mb-3 parallax-row">
+		<div class="col-12 mb-3">
+			<h3>What do we stand for?</h3>
+		</div>
 		<div class="col-md-4">
-			<div class="card layer-2">
+			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">Innovation</h5>
 					<p>We are constantly pushing the boundaries of what is possible.</p>
@@ -145,7 +149,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="card layer-2">
+			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">Personalization</h5>
 					<p>We believe in tailored experiences that cater to your individual preferences.</p>
@@ -153,7 +157,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="card layer-2">
+			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">User Experience</h5>
 					<p>
@@ -164,12 +168,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="row mb-3">
-		<h3>What is coming?</h3>
-	</div>
 	<div class="row row-2 mb-3 parallax-row">
+		<div class="col-12 mb-3">
+			<h3>What's coming?</h3>
+		</div>
 		<div class="col-md-4">
-			<div class="card layer-2">
+			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">WebRTC Streaming</h5>
 					<p>Real-time, low-latency, easy to integrate streaming technology.</p>
@@ -177,7 +181,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="card layer-2">
+			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">AI Player Switching</h5>
 					<p>Never miss the action using our patented AI scene switching technology</p>
@@ -185,7 +189,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="card layer-2">
+			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">Interactive Experience</h5>
 					<p>
@@ -196,12 +200,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="row mb-3">
-		<h3>Get Involved</h3>
-	</div>
 	<div class="row mb-3 row-3 parallax-row">
+		<div class="col-12 mb-3">
+			<h3>Get Involved</h3>
+		</div>
 		<div class="col-md-4">
-			<div class="card layer-2">
+			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">Join the Community</h5>
 					<p>
@@ -215,7 +219,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="card layer-2">
+			<div class="card">
 				<div class="card-body">
 					<div class="card-title">
 						<h5>Join our Newsletter</h5>
@@ -226,7 +230,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="card layer-2">
+			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">Get involved</h5>
 					<p>Are you a devloper? We would love to have you on board.</p>
@@ -240,26 +244,34 @@
 	.background-container {
 		position: relative;
 		width: 100%;
-		max-height: 1000px;
-		min-height: 100vh;
-		height: auto;
-		overflow: hidden;
-		box-sizing: border-box;
+		height: 100vh;
 	}
 
 	.background-container h1,
 	.background-container h3 {
 		/* Don't allow text selection */
 		user-select: none;
+		position: absolute;
+		color: white;
+		text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+		z-index: 2;
 	}
 
-	.background-image {
-		background-image: url('/assets/tech-background.gif');
-		background-size: cover;
+
+	.nodes {
+		overflow-x: hidden;
+	}	
+
+	.tint {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
-		filter: brightness(0.8);
+		background-color: rgba(0, 0, 0, 0.3);
+		z-index: 1;
 	}
+
 	.t-shadow {
 		text-shadow: 2px 2px 15px rgba(255, 255, 255, 0.5);
 	}
@@ -286,6 +298,9 @@
 	.parallax-row {
 		position: relative;
 		overflow: hidden;
+		background-color: rgba(0, 0, 0, 0.6);
+		background-blend-mode: overlay;
+		min-height: 50vh;
 	}
 
 	.row-background {
@@ -306,7 +321,8 @@
 	}
 
 	.card {
-		background-color: color-mix(in srgb, var(--layer-1) 80%, transparent);
+		background-color: rgba(0,0,0,0);
+		border: none;
 	}
 </style>
 
