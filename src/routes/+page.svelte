@@ -204,7 +204,7 @@
 		<div class="col-12 mb-3">
 			<h3>Get Involved</h3>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">Join the Community</h5>
@@ -218,7 +218,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<!-- <div class="col-md-4">
 			<div class="card">
 				<div class="card-body">
 					<div class="card-title">
@@ -237,7 +237,7 @@
 					<a href="/get-involved" class="btn btn-primary"> Join our Team </a>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>
 <style>
