@@ -12,6 +12,7 @@ import { Struct } from 'drizzle-struct/back-end';
 import { DB } from '$lib/server/db/';
 import '$lib/server/utils/files';
 import '$lib/server/index';
+import '$lib/server/structs/newsletter';
 import { createStructEventService } from '$lib/server/services/struct-event';
 import { Redis } from '$lib/server/services/redis';
 import ignore from 'ignore';

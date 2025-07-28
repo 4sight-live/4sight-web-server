@@ -1,5 +1,50 @@
 <script lang="ts">
 	import { PUBLIC_APP_NAME } from '$env/static/public';
+	import JoinNewsletter from '$lib/components/modals/JoinNewsletter.svelte';
+	import { Parallax } from '$lib/utils/parallax';
+	import { onMount } from 'svelte';
+
+	let newsletter: JoinNewsletter;
+
+	let gridContainer: HTMLDivElement;
+
+	const renderRows = () => {
+		const getMax = (row: Element) => {
+			const cards = row.querySelectorAll('.card');
+			let maxHeight = 0;
+			cards.forEach((card) => {
+				const height = card.clientHeight;
+				if (height > maxHeight) {
+					maxHeight = height;
+				}
+			});
+			return maxHeight;
+		};
+
+		const renderMax = (row: Element) => {
+			const mx = getMax(row);
+			const cards = row.querySelectorAll<HTMLElement>('.card');
+			cards.forEach((card) => {
+				card.style.height = `${mx}px`;
+			});
+		};
+
+		const row1 = document.querySelector('.row-1');
+		const row2 = document.querySelector('.row-2');
+		const row3 = document.querySelector('.row-3');
+
+		if (row1) renderMax(row1);
+		if (row2) renderMax(row2);
+		if (row3) renderMax(row3);
+	};
+
+	onMount(() => {
+		renderRows();
+		window.addEventListener('resize', renderRows);
+		return () => {
+			window.removeEventListener('resize', renderRows);
+		}
+	});
 </script>
 
 <svelte:head>
@@ -73,7 +118,7 @@
 		Adaptive
 	</h3>
 </div>
-<div class="container layer-1">
+<div class="container layer-1 pt-3" bind:this={gridContainer}>
 	<div class="row mb-3">
 		<h3>Our Mission</h3>
 	</div>
@@ -88,9 +133,9 @@
 		</div>
 	</div>
 	<div class="row mb-3">
-		<h3>Values</h3>
+		<h3>What do we stand for?</h3>
 	</div>
-	<div class="row row-1 mb-3">
+	<div class="row row-1 mb-3 parallax-row">
 		<div class="col-md-4">
 			<div class="card layer-2">
 				<div class="card-body">
@@ -120,9 +165,9 @@
 		</div>
 	</div>
 	<div class="row mb-3">
-		<h3>What is coming</h3>
+		<h3>What is coming?</h3>
 	</div>
-	<div class="row row-2 mb-3">
+	<div class="row row-2 mb-3 parallax-row">
 		<div class="col-md-4">
 			<div class="card layer-2">
 				<div class="card-body">
@@ -154,7 +199,7 @@
 	<div class="row mb-3">
 		<h3>Get Involved</h3>
 	</div>
-	<div class="row mb-3 row-3">
+	<div class="row mb-3 row-3 parallax-row">
 		<div class="col-md-4">
 			<div class="card layer-2">
 				<div class="card-body">
@@ -175,7 +220,7 @@
 					<div class="card-title">
 						<h5>Join our Newsletter</h5>
 						<p>Stay updated with the latest news, features, and updates from 4Sight Streaming.</p>
-						<button class="btn btn-primary" onclick={() => []}> Join our Newsletter </button>
+						<button class="btn btn-primary" onclick={() => newsletter.show()}> Join our Newsletter </button>
 					</div>
 				</div>
 			</div>
@@ -191,3 +236,79 @@
 		</div>
 	</div>
 </div>
+<style>
+	.background-container {
+		position: relative;
+		width: 100%;
+		max-height: 1000px;
+		min-height: 100vh;
+		height: auto;
+		overflow: hidden;
+		box-sizing: border-box;
+	}
+
+	.background-container h1,
+	.background-container h3 {
+		/* Don't allow text selection */
+		user-select: none;
+	}
+
+	.background-image {
+		background-image: url('/assets/tech-background.gif');
+		background-size: cover;
+		width: 100%;
+		height: 100%;
+		filter: brightness(0.8);
+	}
+	.t-shadow {
+		text-shadow: 2px 2px 15px rgba(255, 255, 255, 0.5);
+	}
+
+	.row-1 {
+		background-image: url('/assets/hard-drives.jpg');
+		background-size: cover;
+		background-position: center;
+	}
+
+	.row-2 {
+		background-image: url('/assets/programming.jpg');
+		background-size: cover;
+		background-position: center;
+	}
+
+	.row-3 {
+		background-image: url('/assets/robots.jpg');
+		background-size: cover;
+		background-position: top;
+	}
+		
+
+	.parallax-row {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.row-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: center;
+		z-index: 0;
+	}
+
+	.parallax-row .card,
+	.parallax-row .card-body {
+		position: relative;
+		z-index: 1;
+	}
+
+	.card {
+		background-color: color-mix(in srgb, var(--layer-1) 80%, transparent);
+	}
+</style>
+
+
+<JoinNewsletter bind:this={newsletter} />

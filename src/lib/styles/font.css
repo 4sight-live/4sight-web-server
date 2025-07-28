@@ -1,7 +1,3 @@
-// 1. Import the Manrope font
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
-
-// 2. Apply the font globally
 * {
 	font-family: 'Manrope', sans-serif;
 	line-height: 1.5;
@@ -11,9 +7,8 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-// 3. Set base font size
 html {
-	font-size: 16px; // You can change this to use rem-based scaling
+	font-size: 16px; 
 }
 
 body {
@@ -24,7 +19,6 @@ body {
 	margin: 0;
 }
 
-// 4. Heading sizes
 h1,
 h2,
 h3,
@@ -54,9 +48,8 @@ h6 {
 	font-size: 1rem;
 }
 
-// 5. Paragraphs and other text
 p {
-	font-size: 1rem;
+	font-size: .85rem;
 	margin: 1em 0;
 }
 
@@ -84,14 +77,12 @@ textarea {
 	font-size: 1rem;
 }
 
-// 6. Code blocks
 code,
 pre {
 	font-family: 'Fira Code', 'Courier New', monospace;
 	font-size: 0.95rem;
 }
 
-// 7. Responsive adjustments (optional)
 @media (max-width: 768px) {
 	h1 {
 		font-size: 2rem;
