@@ -26,10 +26,6 @@
 
 	let distanceToTop = $state(0);
 
-	const downloadNewsletters = async () => {
-		const res = await fetch('/newsletter/download', {});
-	};
-
 	onMount(() => {
 		const rect = gridContainer.getBoundingClientRect();
 		distanceToTop = rect.top;
@@ -45,13 +41,6 @@
 	<div class="row mb-3">
 		<div class="col-12">
 			<h1 class="mb-3">Manage Accounts</h1>
-		</div>
-	</div>
-	<div class="row mb">
-		<div class="col-12">
-			<button type="button" class="btn btn-primary" onclick={downloadNewsletters}>
-				Download Newsletters
-			</button>
 		</div>
 	</div>
 	<div class="row mb-3">
@@ -76,12 +65,12 @@
 							field: 'account.data.lastName',
 							headerName: 'Last Name'
 						},
-						{
-							headerName: 'Picture',
-							cellRenderer: (params: ICellRendererParams<Row>) => {
-								return `<img src="${params.data?.account.data.picture}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%;">`;
-							}
-						},
+						// {
+						// 	headerName: 'Picture',
+						// 	cellRenderer: (params: ICellRendererParams<Row>) => {
+						// 		return `<img src="${params.data?.account.data.picture}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%;">`;
+						// 	}
+						// },
 						{
 							headerName: 'Verified',
 							cellRenderer: (params: ICellRendererParams<Row>) => {
