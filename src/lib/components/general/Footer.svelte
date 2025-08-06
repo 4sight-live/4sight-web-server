@@ -8,8 +8,8 @@
 			<div class="col text-center">
 				<p class="text-muted">
 					&copy; {new Date().getFullYear()}
-					{PUBLIC_APP_NAME}. 
-					<br>
+					{PUBLIC_APP_NAME}.
+					<br />
 					All rights reserved.
 				</p>
 			</div>

@@ -3,8 +3,15 @@
 		<mj-title>Hi {{ name }}, welcome to 4sight</mj-title>
 		<mj-preview>Thanks for joining our mailing list — we're glad you're here.</mj-preview>
 		<mj-style>
-			.body-text { font-size: 16px; line-height: 1.6; color: #444444; } .highlight { color: #0077ff;
-			font-weight: bold; }
+			.body-text {
+				font-size: 16px;
+				line-height: 1.6;
+				color: #444444;
+			}
+			.highlight {
+				color: #0077ff;
+				font-weight: bold;
+			}
 		</mj-style>
 	</mj-head>
 
