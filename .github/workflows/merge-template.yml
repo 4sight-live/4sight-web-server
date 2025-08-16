@@ -14,10 +14,12 @@ jobs:
     uses: ./.github/workflows/testing-e2e.yml
   check:
     uses: ./.github/workflows/testing-svelte-check.yml
+  docker-compose:
+    uses: ./.github/workflows/docker-compose-test.yml
 
   merge-template:
     runs-on: ubuntu-latest
-    needs: [format, unit-tests, E2E, check]
+    needs: [format, unit-tests, E2E, check, docker-compose]
 
     strategy:
       fail-fast: false
@@ -49,7 +51,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10.13.1
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -59,11 +61,6 @@ jobs:
       - name: 'Installing dependencies'
         run: |
           pnpm i
-
-      - name: 'Converting Readme'
-        run: |
-          pnpm fix-readme ${{ matrix.templates }}
-          rm -rf ./scripts/fix-readme.ts
 
       - name: Send pull-request
         run: |
@@ -75,7 +72,7 @@ jobs:
           CLONE_DIR="target-repo"
 
           echo "Running premerge scripts"
-          pnpm script premerge-render premerge ${{ matrix.templates }}
+          pnpm script premerge-render ${{ matrix.templates }} --force
 
           echo "Cloning target repo"
           git clone $REPOSITORY $CLONE_DIR
