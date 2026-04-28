@@ -3,7 +3,7 @@ declare
   schema_name text;
 begin
   foreach schema_name in array array[
-    'sveltekit_template'
+    '4sight_web_server'
   ]
   loop
     execute format('create schema if not exists %I', schema_name);

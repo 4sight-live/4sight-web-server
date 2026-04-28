@@ -1,5 +1,5 @@
-alter table "sveltekit_template"."test" drop column "archive";
+alter table "4sight_web_server"."test" drop column "archive";
 
-alter table "sveltekit_template"."test" add column "archived" boolean not null default false;
+alter table "4sight_web_server"."test" add column "archived" boolean not null default false;
 
 
